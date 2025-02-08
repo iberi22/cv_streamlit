@@ -134,14 +134,7 @@ with col1:
             social_icons_html += f"""
                 <a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>
             """
-        if TWITTER_PROFILE_URL:
-            social_icons_html += f"""
-                <a href="{TWITTER_PROFILE_URL}" target="_blank"><img src="{TWITTER_ICON_URL}" alt="Twitter"></a>
-            """
-        if INSTAGRAM_PROFILE_URL:
-            social_icons_html += f"""
-                <a href="{INSTAGRAM_PROFILE_URL}" target="_blank"><img src="{INSTAGRAM_ICON_URL}" alt="Instagram"></a>
-            """
+       
         social_icons_html += "</div>"
         st.markdown(social_icons_html, unsafe_allow_html=True)
 
