@@ -53,18 +53,24 @@ hr {{
     border-color: {neon_green};
 }}
 
+/* --- Estilos para los iconos de redes sociales --- */
 .social-icons-top-right {{
     position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex; /* Para organizar los iconos horizontalmente */
-    gap: 10px;     /* Espacio entre iconos */
-    z-index: 1000; /* Asegura que estén por encima de otros elementos */
+    top: 10px; /* Ajustado un poco más arriba */
+    right: 10px; /* Ajustado un poco más a la derecha */
+    display: flex;
+    gap: 5px; /* Reducido el espacio entre iconos */
+    z-index: 1000;
 }}
 
 .social-icons-top-right img {{
-    width: 200px;
-    height: auto; /* Para mantener la proporción */
+    width: 50px; /* Reducido el tamaño de los iconos para mejor visualización */
+    height: auto;
+    transition: transform 0.3s ease-in-out; /* Añadida transición suave */
+}}
+
+.social-icons-top-right img:hover {{
+    transform: scale(1.1); /* Ligeramente más grande al pasar el ratón */
 }}
 
 
