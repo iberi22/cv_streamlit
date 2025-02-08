@@ -57,7 +57,7 @@ GITHUB_USERNAME = "iberi22" # **¡TU NOMBRE DE USUARIO DE GITHUB!**
 
 @st.cache_data # Cachear los datos para no hacer peticiones repetidas innecesarias
 def get_github_profile(username):
-    url = f"https://api.github.com/users/{username}"
+    url = f"https://api.github.com/users/iberi22"
     response = requests.get(url)
     if response.status_code == 200:
         return response.json()
@@ -66,7 +66,7 @@ def get_github_profile(username):
 
 @st.cache_data # Cachear los datos
 def get_github_repos(username):
-    url = f"https://api.github.com/users/{username}/repos"
+    url = f"https://api.github.com/users/iberi22/repos"
     response = requests.get(url)
     if response.status_code == 200:
         return response.json()
@@ -82,7 +82,7 @@ if github_profile:
     st.title(f"{github_profile['name'] or GITHUB_USERNAME}") # Usa nombre si está disponible, sino username
     if github_profile['bio']:
         st.markdown(f"*{github_profile['bio']}*")
-    st.write(f"GitHub: [{GITHUB_USERNAME}](https://github.com/{GITHUB_USERNAME})") # Enlace a GitHub
+    st.write(f"GitHub: [{GITHUB_USERNAME}](https://github.com/iberi22)") # Enlace a GitHub
 
     st.header("Proyectos Destacados (GitHub Repositorios)")
     if github_repos:
