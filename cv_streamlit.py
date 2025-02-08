@@ -125,17 +125,17 @@ with col1:
         st.image(github_profile['avatar_url'], width=150) # Foto de GitHub a la izquierda
 
         # --- Iconos de Redes Sociales debajo de la foto ---
-        social_icons_html = f"""
-        <div class="social-icons-below-image">
-            <a href="{KICK_PROFILE_URL}" target="_blank"><img src="{KICK_ICON_URL}" alt="Kick" ></a>
-            <a href="https://github.com/{GITHUB_USERNAME}" target="_blank"><img src="{GITHUB_ICON_URL}" alt="GitHub"></a>
-        """
+        social_icons_list = []
+        social_icons_list.append(f'<a href="{KICK_PROFILE_URL}" target="_blank"><img src="{KICK_ICON_URL}" alt="Kick" ></a>')
+        social_icons_list.append(f'<a href="https://github.com/{GITHUB_USERNAME}" target="_blank"><img src="{GITHUB_ICON_URL}" alt="GitHub"></a>')
         if LINKEDIN_PROFILE_URL:
-            social_icons_html += f"""
-                <a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>
-            """
-       
-        social_icons_html += "</div>"
+            social_icons_list.append(f'<a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>')
+        if TWITTER_PROFILE_URL:
+            social_icons_list.append(f'<a href="{TWITTER_PROFILE_URL}" target="_blank"><img src="{TWITTER_ICON_URL}" alt="Twitter"></a>')
+        if INSTAGRAM_PROFILE_URL:
+            social_icons_list.append(f'<a href="{INSTAGRAM_PROFILE_URL}" target="_blank"><img src="{INSTAGRAM_ICON_URL}" alt="Instagram"></a>')
+
+        social_icons_html = f'<div class="social-icons-below-image">{"".join(social_icons_list)}</div>'
         st.markdown(social_icons_html, unsafe_allow_html=True)
 
         # --- Embed de iframe de Kick - Visible directamente y más a la izquierda ---
