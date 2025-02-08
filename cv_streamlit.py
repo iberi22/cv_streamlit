@@ -53,6 +53,21 @@ hr {{
     border-color: {neon_green};
 }}
 
+.social-icons-top-right {{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex; /* Para organizar los iconos horizontalmente */
+    gap: 10px;     /* Espacio entre iconos */
+    z-index: 1000; /* Asegura que estén por encima de otros elementos */
+}}
+
+.social-icons-top-right img {{
+    width: 200px;
+    height: auto; /* Para mantener la proporción */
+}}
+
+
 </style>
 """
 st.markdown(page_bg_color, unsafe_allow_html=True)
@@ -111,31 +126,40 @@ with col2:
         if github_profile['bio']:
             st.markdown(f"*{github_profile['bio']}*")
 
-        # --- Sidebar en el encabezado (Justo al lado del nombre) ---
-        with st.expander("Conectar"): # Usando un expander para organizar el sidebar, puedes cambiarlo a otro elemento o quitarlo
-            st.markdown("### Transmisión de Kick")
+        # --- Embed de iframe de Kick - Visible directamente ---
+        st.markdown("### Transmisión de Kick")
+        kick_embed_code = f"""
+            <iframe
+                src="https://player.kick.com/{KICK_USERNAME}"
+                height="300"  # Ajusta la altura según necesites
+                width="350"   # Ajusta el ancho según necesites
+                frameborder="0"
+                allowfullscreen
+                ></iframe>
+            """
+        st.markdown(kick_embed_code, unsafe_allow_html=True) # Embed del iframe
 
-            # --- Embed de iframe de Kick ---
-            kick_embed_code = f"""
-                <iframe
-                    src="https://player.kick.com/{KICK_USERNAME}"
-                    height="300"  # Ajusta la altura según necesites
-                    width="350"   # Ajusta el ancho según necesites
-                    frameborder="0"
-                    allowfullscreen
-                    ></iframe>
-                """
-            st.markdown(kick_embed_code, unsafe_allow_html=True) # Embed del iframe
 
-            st.markdown("### Redes Sociales")
-            st.markdown(f"[![Kick Icon]({KICK_ICON_URL})]({KICK_PROFILE_URL})", unsafe_allow_html=True)
-            st.markdown(f"[![GitHub Icon]({GITHUB_ICON_URL})]({f'https://github.com/{GITHUB_USERNAME}'})", unsafe_allow_html=True)
-            if LINKEDIN_PROFILE_URL:
-                st.markdown(f"[![LinkedIn Icon]({LINKEDIN_ICON_URL})]({LINKEDIN_PROFILE_URL})", unsafe_allow_html=True)
-            if TWITTER_PROFILE_URL:
-                st.markdown(f"[![Twitter Icon]({TWITTER_ICON_URL})]({TWITTER_PROFILE_URL})", unsafe_allow_html=True)
-            if INSTAGRAM_PROFILE_URL:
-                st.markdown(f"[![Instagram Icon]({INSTAGRAM_ICON_URL})]({INSTAGRAM_PROFILE_URL})", unsafe_allow_html=True)
+# --- Iconos de Redes Sociales en la parte superior derecha ---
+social_icons_html = f"""
+<div class="social-icons-top-right">
+    <a href="{KICK_PROFILE_URL}" target="_blank"><img src="{KICK_ICON_URL}" alt="Kick" ></a>
+    <a href="https://github.com/{GITHUB_USERNAME}" target="_blank"><img src="{GITHUB_ICON_URL}" alt="GitHub"></a>
+"""
+if LINKEDIN_PROFILE_URL:
+    social_icons_html += f"""
+        <a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>
+    """
+if TWITTER_PROFILE_URL:
+    social_icons_html += f"""
+        <a href="{TWITTER_PROFILE_URL}" target="_blank"><img src="{TWITTER_ICON_URL}" alt="Twitter"></a>
+    """
+if INSTAGRAM_PROFILE_URL:
+    social_icons_html += f"""
+        <a href="{INSTAGRAM_PROFILE_URL}" target="_blank"><img src="{INSTAGRAM_ICON_URL}" alt="Instagram"></a>
+    """
+social_icons_html += "</div>"
+st.markdown(social_icons_html, unsafe_allow_html=True)
 
 
 st.write("---") # Separador horizontal después del encabezado
