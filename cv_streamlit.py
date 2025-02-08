@@ -80,9 +80,7 @@ st.markdown(page_bg_color, unsafe_allow_html=True)
 GITHUB_USERNAME = "iberi22" # **¡TU NOMBRE DE USUARIO DE GITHUB!**
 KICK_USERNAME = "elberi" # **¡TU NOMBRE DE USUARIO DE KICK!**  <- REEMPLAZA CON TU USERNAME REAL
 KICK_PROFILE_URL = f"https://kick.com/elberi"
-LINKEDIN_PROFILE_URL = "https://www.linkedin.com/in/brahyan-samuel-belalcazar-rios-b04590328/" # **¡TU PERFIL DE LINKEDIN!**
-TWITTER_PROFILE_URL = "https://x.com/x_donberi"   # **¡TU PERFIL DE TWITTER (X)!**
-INSTAGRAM_PROFILE_URL = "https://www.instagram.com/s4m.co" # **¡TU PERFIL DE INSTAGRAM!**
+
 
 # --- Iconos de Redes Sociales (Puedes buscar iconos mejores o alojarlos localmente) ---
 KICK_ICON_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Kick_app_logo.svg/800px-Kick_app_logo.svg.png" # Ejemplo de icono, puedes buscar uno mejor
@@ -128,12 +126,7 @@ with col1:
         social_icons_list = []
         social_icons_list.append(f'<a href="{KICK_PROFILE_URL}" target="_blank"><img src="{KICK_ICON_URL}" alt="Kick" ></a>')
         social_icons_list.append(f'<a href="https://github.com/{GITHUB_USERNAME}" target="_blank"><img src="{GITHUB_ICON_URL}" alt="GitHub"></a>')
-        if LINKEDIN_PROFILE_URL:
-            social_icons_list.append(f'<a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>')
-        if TWITTER_PROFILE_URL:
-            social_icons_list.append(f'<a href="{TWITTER_PROFILE_URL}" target="_blank"><img src="{TWITTER_ICON_URL}" alt="Twitter"></a>')
-        if INSTAGRAM_PROFILE_URL:
-            social_icons_list.append(f'<a href="{INSTAGRAM_PROFILE_URL}" target="_blank"><img src="{INSTAGRAM_ICON_URL}" alt="Instagram"></a>')
+       
 
         social_icons_html = f'<div class="social-icons-below-image">{"".join(social_icons_list)}</div>'
         st.markdown(social_icons_html, unsafe_allow_html=True)
