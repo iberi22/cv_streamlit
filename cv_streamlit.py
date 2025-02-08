@@ -53,23 +53,21 @@ hr {{
     border-color: {neon_green};
 }}
 
-/* --- Estilos para los iconos de redes sociales --- */
-.social-icons-top-right {{
-    position: fixed;
-    top: 10px; /* Ajustado un poco más arriba */
-    right: 10px; /* Ajustado un poco más a la derecha */
-    display: flex;
-    gap: 5px; /* Reducido el espacio entre iconos */
-    z-index: 1000;
+/* --- Estilos para los iconos de redes sociales (ahora debajo de la foto) --- */
+.social-icons-below-image {{
+    display: flex; /* Para organizar los iconos horizontalmente */
+    gap: 10px;     /* Espacio entre iconos */
+    justify-content: center; /* Centrar los iconos horizontalmente */
+    margin-top: 10px; /* Espacio desde la foto */
 }}
 
-.social-icons-top-right img {{
+.social-icons-below-image img {{
     width: 50px; /* Reducido el tamaño de los iconos para mejor visualización */
     height: auto;
     transition: transform 0.3s ease-in-out; /* Añadida transición suave */
 }}
 
-.social-icons-top-right img:hover {{
+.social-icons-below-image img:hover {{
     transform: scale(1.1); /* Ligeramente más grande al pasar el ratón */
 }}
 
@@ -126,13 +124,28 @@ with col1:
     if github_profile and github_profile['avatar_url']:
         st.image(github_profile['avatar_url'], width=150) # Foto de GitHub a la izquierda
 
-with col2:
-    if github_profile:
-        st.title(f"{github_profile['name'] or GITHUB_USERNAME}") # Usa nombre si está disponible, sino username
-        if github_profile['bio']:
-            st.markdown(f"*{github_profile['bio']}*")
+        # --- Iconos de Redes Sociales debajo de la foto ---
+        social_icons_html = f"""
+        <div class="social-icons-below-image">
+            <a href="{KICK_PROFILE_URL}" target="_blank"><img src="{KICK_ICON_URL}" alt="Kick" ></a>
+            <a href="https://github.com/{GITHUB_USERNAME}" target="_blank"><img src="{GITHUB_ICON_URL}" alt="GitHub"></a>
+        """
+        if LINKEDIN_PROFILE_URL:
+            social_icons_html += f"""
+                <a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>
+            """
+        if TWITTER_PROFILE_URL:
+            social_icons_html += f"""
+                <a href="{TWITTER_PROFILE_URL}" target="_blank"><img src="{TWITTER_ICON_URL}" alt="Twitter"></a>
+            """
+        if INSTAGRAM_PROFILE_URL:
+            social_icons_html += f"""
+                <a href="{INSTAGRAM_PROFILE_URL}" target="_blank"><img src="{INSTAGRAM_ICON_URL}" alt="Instagram"></a>
+            """
+        social_icons_html += "</div>"
+        st.markdown(social_icons_html, unsafe_allow_html=True)
 
-        # --- Embed de iframe de Kick - Visible directamente ---
+        # --- Embed de iframe de Kick - Visible directamente y más a la izquierda ---
         st.markdown("### Transmisión de Kick")
         kick_embed_code = f"""
             <iframe
@@ -146,26 +159,11 @@ with col2:
         st.markdown(kick_embed_code, unsafe_allow_html=True) # Embed del iframe
 
 
-# --- Iconos de Redes Sociales en la parte superior derecha ---
-social_icons_html = f"""
-<div class="social-icons-top-right">
-    <a href="{KICK_PROFILE_URL}" target="_blank"><img src="{KICK_ICON_URL}" alt="Kick" ></a>
-    <a href="https://github.com/{GITHUB_USERNAME}" target="_blank"><img src="{GITHUB_ICON_URL}" alt="GitHub"></a>
-"""
-if LINKEDIN_PROFILE_URL:
-    social_icons_html += f"""
-        <a href="{LINKEDIN_PROFILE_URL}" target="_blank"><img src="{LINKEDIN_ICON_URL}" alt="LinkedIn"></a>
-    """
-if TWITTER_PROFILE_URL:
-    social_icons_html += f"""
-        <a href="{TWITTER_PROFILE_URL}" target="_blank"><img src="{TWITTER_ICON_URL}" alt="Twitter"></a>
-    """
-if INSTAGRAM_PROFILE_URL:
-    social_icons_html += f"""
-        <a href="{INSTAGRAM_PROFILE_URL}" target="_blank"><img src="{INSTAGRAM_ICON_URL}" alt="Instagram"></a>
-    """
-social_icons_html += "</div>"
-st.markdown(social_icons_html, unsafe_allow_html=True)
+with col2:
+    if github_profile:
+        st.title(f"{github_profile['name'] or GITHUB_USERNAME}") # Usa nombre si está disponible, sino username
+        if github_profile['bio']:
+            st.markdown(f"*{github_profile['bio']}*")
 
 
 st.write("---") # Separador horizontal después del encabezado
