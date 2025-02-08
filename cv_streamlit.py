@@ -81,7 +81,7 @@ st.markdown(page_bg_color, unsafe_allow_html=True)
 # --- Datos de Perfil y Redes Sociales (REEMPLAZA CON TUS DATOS) ---
 GITHUB_USERNAME = "iberi22" # **¡TU NOMBRE DE USUARIO DE GITHUB!**
 KICK_USERNAME = "elberi" # **¡TU NOMBRE DE USUARIO DE KICK!**  <- REEMPLAZA CON TU USERNAME REAL
-KICK_PROFILE_URL = f"https://kick.com/elberi"
+KICK_PROFILE_URL = "https://kick.com/elberi"
 LINKEDIN_PROFILE_URL = "https://www.linkedin.com/in/brahyan-samuel-belalcazar-rios-b04590328/" # **¡TU PERFIL DE LINKEDIN!**
 TWITTER_PROFILE_URL = "https://x.com/x_donberi"   # **¡TU PERFIL DE TWITTER (X)!**
 INSTAGRAM_PROFILE_URL = "https://www.instagram.com/s4m.co" # **¡TU PERFIL DE INSTAGRAM!**
